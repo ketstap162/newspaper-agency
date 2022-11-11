@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.views import generic
 
@@ -33,5 +34,11 @@ class TopicListView(generic.ListView):
 
 class NewspaperListView(generic.ListView):
     model = Newspaper
-    paginate_by = 5
     queryset = Newspaper.objects.all().select_related("topic")
+    paginate_by = 5
+
+
+class RedactorListView(generic.ListView):
+    model = get_user_model()
+    queryset = get_user_model().objects.all()
+    paginate_by = 5

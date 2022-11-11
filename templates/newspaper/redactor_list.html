@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+  | Redactors
+{% endblock %}
+
+{% block content %}
+    <h1>
+      Redactors
+    </h1>
+
+  {% if redactor_list %}
+    List of our redactors:
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+      </thead>
+
+      {% for redactor in redactor_list %}
+        <tr>
+          <td>
+              {{ redactor.id }}
+          </td>
+          <td>
+              {{ redactor.username }}
+          </td>
+          <td>
+              {{ redactor.first_name }}
+          </td>
+          <td>
+              {{ redactor.last_name }}
+          </td>
+          <td>
+            {% if redactor.years_of_experience %}
+              {{ redactor.years_of_experience }}
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>Topics not found.</p>
+  {% endif %}
+{% endblock %}

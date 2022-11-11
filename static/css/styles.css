@@ -7,7 +7,12 @@
 
 .content-block {
     width: 1100px;
+    padding: 20px;
     border-radius: 20px;
     background-color: rgba(230, 230, 230, 0.9);
     border: 2px solid black;
+}
+
+\header {
+    margin: 20px;
 }
