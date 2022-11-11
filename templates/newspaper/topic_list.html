@@ -5,13 +5,12 @@
     Topic List
   </h1>
 
-  {% if manufacturer_list %}
-    <table class="table">
-      <tr>
+  {% if topic_list %}
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
         <th>ID</th>
         <th>Name</th>
-        <th>Country</th>
-      </tr>
+      </thead>
 
       {% for topic in topic_list %}
         <tr>
@@ -20,9 +19,6 @@
           </td>
           <td>
               {{ topic.name }}
-          </td>
-          <td>
-              {{ topic.country }}
           </td>
         </tr>
       {% endfor %}

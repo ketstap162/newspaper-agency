@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Newspaper Agency</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,6 +9,9 @@
           crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <title>3rAgency</title>
+    <link rel="icon" type="image/png" href="{% static 'images/SiteIcon.png' %}">
   </head>
 
   <header>
@@ -19,7 +20,7 @@
     </div>
   </header>
 
-  <body>
+  <body style="background-image: url({% static 'images/background1.jpg' %})">
     <div class="container-fluid content-block">
       {% block content %}
         Newspaper's Agency Info
