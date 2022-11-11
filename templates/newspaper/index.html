@@ -4,10 +4,15 @@
   <h1>3rAgency Home</h1>
   <p>Welcome to Best Newspaper Agency!</p>
   <h2>Our achievements</h2>
+
   <p>The 3rAgency has the following record counts:</p>
   <ul>
     <li><strong>Newspaper issues:</strong> {{ num_newspapers }}</li>
     <li><strong>Redactors:</strong> {{ num_redactors }}</li>
     <li><strong>Topics:</strong> {{ num_topics }}</li>
   </ul>
+
+  <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
 {% endblock %}
