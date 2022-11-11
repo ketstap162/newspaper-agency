@@ -10,7 +10,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-    <title>3rAgency</title>
+    <title>3rAgency {% block title %}{% endblock %}</title>
     <link rel="icon" type="image/png" href="{% static 'images/SiteIcon.png' %}">
   </head>
 
@@ -20,7 +20,7 @@
     </div>
   </header>
 
-  <body style="background-image: url({% static 'images/background1.jpg' %})">
+  <body style="background-image: url({% static 'images/background1.jpg' %}); background-size: cover;">
     <div class="container-fluid content-block">
       {% block content %}
         Newspaper's Agency Info

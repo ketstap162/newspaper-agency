@@ -29,3 +29,9 @@ class TopicListView(generic.ListView):
     context_object_name = "topic_list"
     template_name = "newspaper/topic_list.html"
     paginate_by = 5
+
+
+class NewspaperListView(generic.ListView):
+    model = Newspaper
+    paginate_by = 5
+    queryset = Newspaper.objects.all().select_related("topic")

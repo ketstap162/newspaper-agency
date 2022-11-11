@@ -1,28 +1,36 @@
 {% extends "base.html" %}
 
 {% block title %}
-  | Topics
+  | Newspapers
 {% endblock %}
 
 {% block content %}
-    <h1>
-      Topics
-    </h1>
+  <h1>
+    Newspapers
+  </h1>
 
-  {% if topic_list %}
+  {% if newspaper_list %}
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
         <th>ID</th>
-        <th>Name</th>
+        <th>Title</th>
+        <th>Topic</th>
+        <th>Published Date</th>
       </thead>
 
-      {% for topic in topic_list %}
+      {% for newspaper in newspaper_list %}
         <tr>
           <td>
               {{ topic.id }}
           </td>
           <td>
-              {{ topic.name }}
+              {{ topic.title }}
+          </td>
+          <td>
+              {{ topic.topic }}
+          </td>
+          <td>
+              {{ topic.published_date }}
           </td>
         </tr>
       {% endfor %}
