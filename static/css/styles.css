@@ -1,0 +1,13 @@
+.nav-header {
+    width: 1100px;
+    border-radius: 10px;
+    background-color: #EEDDFF;
+    border: 2px solid #7922CC;
+}
+
+.content-block {
+    width: 1100px;
+    border-radius: 20px;
+    background-color: #EEDDFF;
+    border: 2px solid #7922CC;
+}
