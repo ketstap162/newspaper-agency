@@ -20,9 +20,9 @@
       {% for topic in topic_list %}
         <tr>
           <td>
-            <div class="btn btn-dark btn-sml">
+            <a href="{% url 'newspaper:topic-detail' pk=topic.id %}" class="btn btn-dark btn-sml">
               {{ topic.id }}
-            </div>
+            </a>
           </td>
           <td>
             {{ topic.name }}

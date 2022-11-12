@@ -32,6 +32,10 @@ class TopicListView(generic.ListView):
     paginate_by = 5
 
 
+class TopicDetailView(generic.DetailView):
+    model = Topic
+
+
 class NewspaperListView(generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.all().select_related("topic")
