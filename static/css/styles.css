@@ -13,6 +13,14 @@
     border: 2px solid black;
 }
 
+.newspaper-content {
+    width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 0;
+    border: 2px solid black;
+}
+
 \header {
     margin: 20px;
 }

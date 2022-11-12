@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}
-  | Redactors
-{% endblock %}
-
 {% block content %}
-    <h1>
-      Redactors
-    </h1>
+  <h1>
+    {{ newspaper.title }}
+  </h1>
 
-  {% if redactor_list %}
-    List of our redactors:
+  <p><strong>Topic: </strong>{{ newspaper.topic.name }}</p>
+
+  <div class="container-fluid newspaper-content">
+    <h4 style="text-align: center">{{ newspaper.title }}</h4>
+    <p>{{ newspaper.content }}</p>
+  </div>
+
+  <h5>Publishers:</h5>
+
+  {% if newspaper.publishers.exists %}
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
         <th>ID</th>
@@ -20,7 +24,7 @@
         <th>Years of experience</th>
       </thead>
 
-      {% for redactor in redactor_list %}
+      {% for redactor in newspaper.publishers.all %}
         <tr>
           <td>
             <a href="" class="btn btn-dark btn-sml">
@@ -28,13 +32,13 @@
             </a>
           </td>
           <td>
-              {{ redactor.username }}
+            {{ redactor.username }}
           </td>
           <td>
-              {{ redactor.first_name }}
+            {{ redactor.first_name }}
           </td>
           <td>
-              {{ redactor.last_name }}
+            {{ redactor.last_name }}
           </td>
           <td>
             {% if redactor.years_of_experience %}
@@ -44,8 +48,7 @@
         </tr>
       {% endfor %}
     </table>
-
   {% else %}
-      <p>Topics not found.</p>
+    Not publishers
   {% endif %}
 {% endblock %}

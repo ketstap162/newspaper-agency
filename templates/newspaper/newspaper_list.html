@@ -22,7 +22,9 @@
       {% for newspaper in newspaper_list %}
         <tr>
           <td>
+            <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}" class="btn btn-dark btn-sml">
               {{ newspaper.id }}
+            </a>
           </td>
           <td>
               {{ newspaper.title }}

@@ -20,10 +20,12 @@
       {% for topic in topic_list %}
         <tr>
           <td>
+            <div class="btn btn-dark btn-sml">
               {{ topic.id }}
+            </div>
           </td>
           <td>
-              {{ topic.name }}
+            {{ topic.name }}
           </td>
         </tr>
       {% endfor %}

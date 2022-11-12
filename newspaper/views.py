@@ -38,6 +38,10 @@ class NewspaperListView(generic.ListView):
     paginate_by = 5
 
 
+class NewspaperDetailView(generic.DetailView):
+    model = Newspaper
+
+
 class RedactorListView(generic.ListView):
     model = get_user_model()
     queryset = get_user_model().objects.all()
