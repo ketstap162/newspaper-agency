@@ -23,7 +23,7 @@
       {% for redactor in redactor_list %}
         <tr>
           <td>
-            <a href="" class="btn btn-dark btn-sml">
+            <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
               {{ redactor.id }}
             </a>
           </td>

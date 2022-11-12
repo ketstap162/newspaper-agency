@@ -12,43 +12,42 @@
     <p>{{ newspaper.content }}</p>
   </div>
 
-  <h5>Publishers:</h5>
-
   {% if newspaper.publishers.exists %}
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-        <th>ID</th>
-        <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Years of experience</th>
-      </thead>
+    <div class="ml-3">
+      <h5>Publishers:</h5>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <th>ID</th>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Years of experience</th>
+        </thead>
 
-      {% for redactor in newspaper.publishers.all %}
-        <tr>
-          <td>
-            <a href="" class="btn btn-dark btn-sml">
-              {{ redactor.id }}
-            </a>
-          </td>
-          <td>
-            {{ redactor.username }}
-          </td>
-          <td>
-            {{ redactor.first_name }}
-          </td>
-          <td>
-            {{ redactor.last_name }}
-          </td>
-          <td>
-            {% if redactor.years_of_experience %}
-              {{ redactor.years_of_experience }}
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
-  {% else %}
-    Not publishers
-  {% endif %}
+        {% for redactor in newspaper.publishers.all %}
+          <tr>
+            <td>
+              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
+                {{ redactor.id }}
+              </a>
+            </td>
+            <td>
+              {{ redactor.username }}
+            </td>
+            <td>
+              {{ redactor.first_name }}
+            </td>
+            <td>
+              {{ redactor.last_name }}
+            </td>
+            <td>
+              {% if redactor.years_of_experience %}
+                {{ redactor.years_of_experience }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </div>
 {% endblock %}
