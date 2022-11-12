@@ -21,8 +21,16 @@
       </li>
     </ul>
   </div>
-  <div class="float-right">
-    <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-dark btn-sml">Login</a>
-    <a href="" class="btn btn-dark btn-sml">Register</a>
-  </div>
+
+  {% if user.is_authenticated %}
+    <div class="float-right">
+      <a href="{% url 'newspaper:redactor-detail' pk=user.id %}" class="btn btn-dark btn-sml">{{ user.username }}</a>
+      <a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-dark btn-sml">Logout</a>
+    </div>
+  {% else %}
+    <div class="float-right">
+      <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-dark btn-sml">Login</a>
+      <a href="" class="btn btn-dark btn-sml">Register</a>
+    </div>
+  {% endif %}
 </nav>
