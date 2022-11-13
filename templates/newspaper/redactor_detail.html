@@ -9,7 +9,15 @@
   <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
   <p><strong>Username:</strong> {{ redactor.username }}</p>
   <p><strong>Email:</strong> {{ redactor.email }}</p>
-  <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+  <p>
+    <strong>Years of experience:</strong> {{ redactor.years_of_experience }}
+    {% if user.is_staff %}
+      <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}?next={{request.path}}"
+         class="btn btn-secondary btn-sm">
+        Update
+      </a>
+    {% endif %}
+  </p>
 
   {% if redactor.newspapers.exists %}
     <div class="ml-3">

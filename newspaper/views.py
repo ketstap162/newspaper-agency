@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
-from newspaper.forms import RedactorCreationForm
+from newspaper.forms import RedactorCreationForm, RedactorYearsUpdateForm
 from newspaper.models import Redactor, Newspaper, Topic
 
 
@@ -62,3 +63,11 @@ class RedactorDetailView(generic.DetailView):
 class RedactorCreateView(generic.CreateView):
     model = Redactor
     form_class = RedactorCreationForm
+    success_url = reverse_lazy("newspaper:redactor-list")
+
+
+class RedactorYearsUpdateView(generic.UpdateView):
+    model = Redactor
+    form_class = RedactorYearsUpdateForm
+    template_name = "newspaper/redactor_years_update.html"
+    success_url = reverse_lazy("newspaper:redactor-list")
