@@ -36,12 +36,12 @@ class RedactorYearsUpdateForm(forms.ModelForm):
         fields = ["years_of_experience"]
 
 
-class TopicSearchForm(forms.Form):
+class SearchForm(forms.Form):
     search_by = forms.CharField(
         max_length=255,
         required=False,
         label="",
         widget=forms.TextInput(attrs={
-            "placeholder": "Search by name"
+            "placeholder": "Search"
         })
     )
