@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>
-      Topics
-      {% if user.is_staff %}
-        <div class="float-right d-flex align-items-center">
-          <a href="{% url 'newspaper:topic-create' %}" class="btn btn-dark">Add</a>
-        </div>
-      {% endif %}
-    </h1>
+  <h1>
+    Topics
+    {% if user.is_staff %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:topic-create' %}" class="btn btn-dark">Add</a>
+      </div>
+    {% endif %}
+  </h1>
+  <hr>
 
   {% if topic_list %}
     List of our newspapers topics:
