@@ -36,6 +36,16 @@ class RedactorYearsUpdateForm(forms.ModelForm):
         fields = ["years_of_experience"]
 
 
+class RedactorFullUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Redactor
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "years_of_experience",
+        )
+
+
 class SearchForm(forms.Form):
     search_by = forms.CharField(
         max_length=255,

@@ -3,6 +3,12 @@
 {% block content %}
   <h1>
     User: {{ redactor.username }}
+    {% if user.is_superuser %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:redactor-full-update' pk=redactor.id %}" class="btn btn-dark">Update</a>
+        <a href="{% url 'newspaper:redactor-delete' pk=redactor.id %}" class="btn btn-secondary">Delete</a>
+      </div>
+    {% endif %}
   </h1>
   <hr>
 

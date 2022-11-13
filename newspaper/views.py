@@ -3,7 +3,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from newspaper.forms import RedactorCreationForm, RedactorYearsUpdateForm, NewspaperForm, SearchForm
+from newspaper.forms import (
+    RedactorCreationForm,
+    RedactorYearsUpdateForm,
+    RedactorFullUpdateForm,
+    NewspaperForm,
+    SearchForm,
+)
 from newspaper.models import Redactor, Newspaper, Topic
 
 
@@ -155,5 +161,17 @@ class RedactorCreateView(generic.CreateView):
 class RedactorYearsUpdateView(generic.UpdateView):
     model = Redactor
     form_class = RedactorYearsUpdateForm
-    template_name = "newspaper/redactor_years_update.html"
+    template_name = "newspaper/redactor_form.html"
+    success_url = reverse_lazy("newspaper:redactor-list")
+
+
+class RedactorFullUpdateView(generic.UpdateView):
+    model = Redactor
+    form_class = RedactorFullUpdateForm
+    template_name = "newspaper/redactor_form.html"
+    success_url = reverse_lazy("newspaper:redactor-list")
+
+
+class RedactorDeleteView(generic.DeleteView):
+    model = Redactor
     success_url = reverse_lazy("newspaper:redactor-list")

@@ -2,13 +2,13 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Create redactor</h1>
+  <h1>{{ object|yesno:"Update,Create" }} redactor {{ redactor.username }}</h1>
   <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ form|crispy }}
 
-    <input type="submit" value="Register" class="btn btn-dark">
+    <input type="submit" value="{{ object|yesno:"Update,Register" }}" class="btn btn-dark">
     <input type="hidden" name="next" value="{{ next }}" />
-    <a href="{{ next }}" class="btn btn-secondary">Cancel</a>
+    <a href="{% url 'newspaper:redactor-list' %}" class="btn btn-secondary">Cancel</a>
   </form>
 {% endblock %}

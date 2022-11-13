@@ -4,11 +4,11 @@
   <h1>
     {{ newspaper.title }}
     {% if user.is_staff %}
-    <div class="float-right d-flex align-items-center">
-      <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-dark">Update</a>
-      <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-secondary">Delete</a>
-    </div>
-  {% endif %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-dark">Update</a>
+        <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-secondary">Delete</a>
+      </div>
+    {% endif %}
   </h1>
   <hr>
 

@@ -8,6 +8,11 @@
 {% block content %}
   <h1>
     Redactors
+    {% if user.is_superuser %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:redactor-create' %}" class="btn btn-dark">Add</a>
+      </div>
+    {% endif %}
   </h1>
   <hr>
 
