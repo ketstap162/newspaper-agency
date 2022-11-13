@@ -24,7 +24,7 @@
 
   {% if user.is_authenticated %}
     <div class="float-right">
-      {% if user.is_staff %}
+      {% if user.is_superuser %}
          <a href="/admin" class="btn btn-dark btn-sml">Admin page</a>
       {% endif %}
       <a href="{% url 'newspaper:redactor-detail' pk=user.id %}" class="btn btn-dark btn-sml">{{ user.username }}</a>
