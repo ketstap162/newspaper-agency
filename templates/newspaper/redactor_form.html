@@ -2,17 +2,12 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  <h1>Login</h1>
-
-  <form method="post" action="{% url 'login' %}">
+  <h1>Create redactor</h1>
+  <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ form|crispy }}
 
-    <input type="submit" value="Login" class="btn btn-dark" />
+    <input type="submit" value="Register" class="btn btn-dark">
     <input type="hidden" name="next" value="{{ next }}" />
     <a href="{{ next }}" class="btn btn-secondary">Cancel</a>
   </form>
