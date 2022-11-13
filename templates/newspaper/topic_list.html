@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block title %}
   | Topics
@@ -16,6 +17,12 @@
   <hr>
 
   {% if topic_list %}
+    <form action="" method="get" class="form-inline">
+      {{ search_form|crispy }}
+       &nbsp
+      <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
+    </form>
+
     List of our newspapers topics:
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
