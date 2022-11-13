@@ -1,4 +1,4 @@
-![Logo of the project](https://i.ibb.co/WswfCcv/SiteIcon.png)
+![Logo of the project](https://i.ibb.co/47WJVRz/Site-Icon-Small.png)
 
 # 3rAgency
 > Newspaper Agency
