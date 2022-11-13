@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from django_superuser_required.views import SuperuserRequiredMixin
 from newspaper.forms import (
     RedactorCreationForm,
     RedactorYearsUpdateForm,
@@ -62,19 +64,19 @@ class TopicDetailView(generic.DetailView):
     model = Topic
 
 
-class TopicCreateView(generic.CreateView):
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper:topic-list")
 
 
-class TopicUpdateView(generic.UpdateView):
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper:topic-list")
 
 
-class TopicDeleteView(generic.DeleteView):
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
     success_url = reverse_lazy("newspaper:topic-list")
 
@@ -107,19 +109,19 @@ class NewspaperDetailView(generic.DetailView):
     queryset = Newspaper.objects.prefetch_related("publishers")
 
 
-class NewspaperCreateView(generic.CreateView):
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class NewspaperUpdateView(generic.UpdateView):
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class NewspaperDeleteView(generic.DeleteView):
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("newspaper:newspaper-list")
 
@@ -158,20 +160,20 @@ class RedactorCreateView(generic.CreateView):
     success_url = reverse_lazy("newspaper:redactor-list")
 
 
-class RedactorYearsUpdateView(generic.UpdateView):
+class RedactorYearsUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorYearsUpdateForm
     template_name = "newspaper/redactor_form.html"
     success_url = reverse_lazy("newspaper:redactor-list")
 
 
-class RedactorFullUpdateView(generic.UpdateView):
+class RedactorFullUpdateView(SuperuserRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorFullUpdateForm
     template_name = "newspaper/redactor_form.html"
     success_url = reverse_lazy("newspaper:redactor-list")
 
 
-class RedactorDeleteView(generic.DeleteView):
+class RedactorDeleteView(SuperuserRequiredMixin, generic.DeleteView):
     model = Redactor
     success_url = reverse_lazy("newspaper:redactor-list")
