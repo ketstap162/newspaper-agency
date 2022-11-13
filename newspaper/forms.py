@@ -6,13 +6,17 @@ from django.core.exceptions import ValidationError
 from newspaper.models import Newspaper, Redactor
 
 
+class DateInput(forms.DateInput):
+    input_type = "date"
+
+
 class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
     published_date = forms.DateTimeField(
-        widget=forms.SelectDateWidget
+        widget=DateInput()
     )
 
     class Meta:
