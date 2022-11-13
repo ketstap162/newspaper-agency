@@ -11,6 +11,9 @@ class NewspaperForm(forms.ModelForm):
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
+    published_date = forms.DateTimeField(
+        widget=forms.SelectDateWidget
+    )
 
     class Meta:
         model = Newspaper

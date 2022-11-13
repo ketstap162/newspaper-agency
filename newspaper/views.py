@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from newspaper.forms import RedactorCreationForm, RedactorYearsUpdateForm
+from newspaper.forms import RedactorCreationForm, RedactorYearsUpdateForm, NewspaperForm
 from newspaper.models import Redactor, Newspaper, Topic
 
 
@@ -64,6 +64,24 @@ class NewspaperListView(generic.ListView):
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper
     queryset = Newspaper.objects.prefetch_related("publishers")
+
+
+class NewspaperCreateView(generic.CreateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
+class NewspaperUpdateView(generic.UpdateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
+class NewspaperDeleteView(generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
 
 
 class RedactorListView(generic.ListView):

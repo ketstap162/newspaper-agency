@@ -40,6 +40,21 @@ urlpatterns = [
         name="newspaper-detail"
     ),
     path(
+        "newspapers/create/",
+        NewspaperCreateView.as_view(),
+        name="newspaper-create",
+    ),
+    path(
+        "newspapers/<int:pk>/update/",
+        NewspaperUpdateView.as_view(),
+        name="newspaper-update",
+    ),
+    path(
+        "newspapers/<int:pk>/delete/",
+        NewspaperDeleteView.as_view(),
+        name="newspaper-delete",
+    ),
+    path(
         "redactors/",
         RedactorListView.as_view(),
         name="redactor-list",
