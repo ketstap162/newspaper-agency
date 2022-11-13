@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block title %}
   | Redactors
@@ -9,6 +10,12 @@
     Redactors
   </h1>
   <hr>
+
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    &nbsp
+    <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
+  </form>
 
   {% if redactor_list %}
     List of our redactors:
