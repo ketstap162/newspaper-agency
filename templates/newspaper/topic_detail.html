@@ -3,7 +3,14 @@
 {% block content %}
   <h1>
     Topic: {{ topic.name }}
+    {% if user.is_staff %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:topic-update' pk=topic.id %}" class="btn btn-dark">Update</a>
+        <a href="{% url 'newspaper:topic-delete' pk=topic.id %}" class="btn btn-secondary">Delete</a>
+      </div>
+    {% endif %}
   </h1>
+  <hr>
 
   {% if topic.newspapers.exists %}
     <div class="ml-3">
