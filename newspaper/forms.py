@@ -26,20 +26,8 @@ class RedactorCreationForm(UserCreationForm):
             "years_of_experience",
         )
 
-    def clean_years_of_exp(self):  # this logic is optional, but possible
-        return validate_years_of_exp(self.cleaned_data["license_number"])
-
 
 class RedactorYearsUpdateForm(forms.ModelForm):
     class Meta:
         model = Redactor
         fields = ["years_of_experience"]
-
-    def clean_license_number(self):
-        return validate_years_of_exp(self.cleaned_data["years_of_experience"])
-
-
-def validate_years_of_exp(years):
-    if years <= 0:
-        raise ValidationError("License number should consist of 8 characters")
-    return years
