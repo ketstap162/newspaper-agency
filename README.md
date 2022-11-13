@@ -7,7 +7,7 @@ A site that allows you to manage newspapers and editors, having an appropriate d
 
 ## Check it out!
 
-[3rAgency project deployed to render.com](link)
+[3rAgency project deployed to render.com](https://threeragency.onrender.com)
 
 ## Installing / Getting started
 
