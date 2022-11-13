@@ -16,13 +16,13 @@
   </h1>
   <hr>
 
-  {% if topic_list %}
-    <form action="" method="get" class="form-inline">
-      {{ search_form|crispy }}
-       &nbsp
-      <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
-    </form>
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    &nbsp
+    <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
+  </form>
 
+  {% if topic_list %}
     List of our newspapers topics:
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">

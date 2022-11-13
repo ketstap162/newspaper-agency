@@ -78,6 +78,23 @@ class NewspaperListView(generic.ListView):
     queryset = Newspaper.objects.all().select_related("topic")
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context["search_form"] = SearchForm(initial={
+            "search_by": self.request.GET.get("search_by", "")
+        })
+        return context
+
+    def get_queryset(self):
+        form = SearchForm(self.request.GET)
+
+        if form.is_valid():
+            result = self.queryset.filter(
+                title__icontains=form.cleaned_data["search_by"]
+            )
+            return result
+        return self.queryset
+
 
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper

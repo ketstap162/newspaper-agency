@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block title %}
   | Newspapers
@@ -14,6 +15,12 @@
     {% endif %}
   </h1>
   <hr>
+
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    &nbsp
+    <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
+  </form>
 
   {% if newspaper_list %}
     List of our newspapers:
