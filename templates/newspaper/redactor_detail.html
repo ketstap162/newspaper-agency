@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    User: {{ redactor.username }}
+    {% if user.is_superuser %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:redactor-full-update' pk=redactor.id %}" class="btn btn-dark">Update</a>
+        <a href="{% url 'newspaper:redactor-delete' pk=redactor.id %}" class="btn btn-secondary">Delete</a>
+      </div>
+    {% endif %}
+  </h1>
+  <hr>
+
+  <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+  <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+  <p><strong>Username:</strong> {{ redactor.username }}</p>
+  <p><strong>Email:</strong> {{ redactor.email }}</p>
+  <p>
+    <strong>Years of experience:</strong> {{ redactor.years_of_experience }}
+    {% if user.is_staff %}
+      <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}?next={{request.path}}"
+         class="btn btn-secondary btn-sm">
+        Update
+      </a>
+    {% endif %}
+  </p>
+
+  {% if redactor.newspapers.exists %}
+    <div class="ml-3">
+      <h4>List of newspapers:</h4>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <th>ID</th>
+          <th>Title</th>
+          <th>Topic</th>
+          <th>Published Date</th>
+        </thead>
+
+        {% for newspaper in redactor.newspapers.all %}
+          <tr>
+            <td>
+              <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}" class="btn btn-dark btn-sml">
+                {{ newspaper.id }}
+              </a>
+            </td>
+            <td style="vertical-align: middle">
+              {{ newspaper.title }}
+            </td>
+            <td style="vertical-align: middle">
+              {{ newspaper.topic }}
+            </td>
+            <td style="vertical-align: middle">
+              {{ newspaper.published_date }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}

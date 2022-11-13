@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg">
+  <div class="navbar-brand">
+    {% load static %}
+    <img src="{% static 'images/SiteIcon.png' %}" width="30" height="30">
+    3rAgency
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'newspaper:index' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'newspaper:topic-list' %}">Topics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'newspaper:newspaper-list' %}">Newspapers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'newspaper:redactor-list' %}">Redactors</a>
+      </li>
+    </ul>
+  </div>
+
+  {% if user.is_authenticated %}
+    <div class="float-right">
+      {% if user.is_superuser %}
+         <a href="/admin" class="btn btn-dark btn-sml">Admin page</a>
+      {% endif %}
+      <a href="{% url 'newspaper:redactor-detail' pk=user.id %}" class="btn btn-dark btn-sml">{{ user.username }}</a>
+      <a href="{% url 'logout'%}?next={{request.path}}" class="btn btn-dark btn-sml">Logout</a>
+    </div>
+  {% else %}
+    <div class="float-right">
+      <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-dark btn-sml">Login</a>
+      <a href="{% url 'newspaper:redactor-create'%}?next={{request.path}}" class="btn btn-dark btn-sml">Register</a>
+    </div>
+  {% endif %}
+</nav>

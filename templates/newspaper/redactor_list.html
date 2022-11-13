@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+  | Redactors
+{% endblock %}
+
+{% block content %}
+  <h1>
+    Redactors
+    {% if user.is_superuser %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:redactor-create' %}" class="btn btn-dark">Add</a>
+      </div>
+    {% endif %}
+  </h1>
+  <hr>
+
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    &nbsp
+    <input type="submit" value="🔍" class="btn btn-secondary btn-sm">
+  </form>
+
+  {% if redactor_list %}
+    List of our redactors:
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+      </thead>
+
+      {% for redactor in redactor_list %}
+        <tr>
+          <td>
+            <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
+              {{ redactor.id }}
+            </a>
+          </td>
+          <td style="vertical-align: middle">
+              {{ redactor.username }}
+          </td>
+          <td style="vertical-align: middle">
+              {{ redactor.first_name }}
+          </td>
+          <td style="vertical-align: middle">
+              {{ redactor.last_name }}
+          </td>
+          <td style="vertical-align: middle">
+            {% if redactor.years_of_experience %}
+              {{ redactor.years_of_experience }}
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>Topics not found.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ newspaper.title }}
+    {% if user.is_staff %}
+      <div class="float-right d-flex align-items-center">
+        <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-dark">Update</a>
+        <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-secondary">Delete</a>
+      </div>
+    {% endif %}
+  </h1>
+  <hr>
+
+  <p><strong>Topic: </strong>{{ newspaper.topic.name }}</p>
+
+  <div class="container-fluid newspaper-content">
+    <h4 style="text-align: center">{{ newspaper.title }}</h4>
+    <p>{{ newspaper.content }}</p>
+  </div>
+
+  {% if newspaper.publishers.exists %}
+    <div class="ml-3">
+      <h5>Publishers:</h5>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <th>ID</th>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Years of experience</th>
+        </thead>
+
+        {% for redactor in newspaper.publishers.all %}
+          <tr>
+            <td>
+              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
+                {{ redactor.id }}
+              </a>
+            </td>
+            <td style="vertical-align: middle">
+              {{ redactor.username }}
+            </td>
+            <td style="vertical-align: middle">
+              {{ redactor.first_name }}
+            </td>
+            <td style="vertical-align: middle">
+              {{ redactor.last_name }}
+            </td>
+            <td style="vertical-align: middle">
+              {% if redactor.years_of_experience %}
+                {{ redactor.years_of_experience }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </div>
+{% endblock %}

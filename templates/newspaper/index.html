@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+  | Home
+{% endblock %}
+
+{% block content %}
+  <h1>3rAgency Home</h1>
+  <hr>
+  <p>Welcome to Best Newspaper Agency! On this site you can manage newspapers!</p>
+  <h5>Our achievements</h5>
+
+  <p>The 3rAgency has the following record counts:</p>
+  <ul>
+    <li><strong>Newspaper issues:</strong> {{ num_newspapers }}</li>
+    <li><strong>Redactors:</strong> {{ num_redactors }}</li>
+    <li><strong>Topics:</strong> {{ num_topics }}</li>
+  </ul>
+
+  <p>You have visited this page
+      {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}
