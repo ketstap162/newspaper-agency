@@ -9,8 +9,8 @@ A site that allows you to manage newspapers and editors, having an appropriate d
 
 [3rAgency project deployed to render.com](https://threeragency.onrender.com)
 
-Test user (is staff):
-login: `test.redactor`
+Test user (is staff):  
+login: `test.redactor`  
 password: `redtest123`
 
 ## Installing / Getting started
