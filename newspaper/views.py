@@ -84,7 +84,7 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class NewspaperListView(generic.ListView):
     model = Newspaper
-    queryset = Newspaper.objects.all().select_related("topic")
+    queryset = Newspaper.objects.select_related("topic")
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -154,7 +154,7 @@ class RedactorListView(generic.ListView):
 
 class RedactorDetailView(generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.all().prefetch_related("newspapers__topic")
+    queryset = Redactor.objects.prefetch_related("newspapers__topic")
 
 
 class RedactorCreateView(generic.CreateView):
