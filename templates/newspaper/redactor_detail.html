@@ -12,12 +12,41 @@
   </h1>
   <hr>
 
-  <p><strong>First name:</strong> {{ redactor.first_name }}</p>
-  <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
-  <p><strong>Username:</strong> {{ redactor.username }}</p>
-  <p><strong>Email:</strong> {{ redactor.email }}</p>
+  <p>
+    <strong>First name:</strong>
+    {% if redactor.first_name %}
+      {{ redactor.first_name }}
+    {% else %}
+      <span style="color: gray">None</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    {% if redactor.last_name %}
+      {{ redactor.last_name }}
+    {% else %}
+      <span style="color: gray">None</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <strong>Username:</strong>
+    {{ redactor.username }}
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    {% if redactor.email %}
+      {{ redactor.email }}
+    {% else %}
+      <span style="color: gray">None</span>
+    {% endif %}
+  </p>
+
   <p>
     <strong>Years of experience:</strong> {{ redactor.years_of_experience }}
+
     {% if user.is_staff %}
       <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}?next={{request.path}}"
          class="btn btn-secondary btn-sm">
