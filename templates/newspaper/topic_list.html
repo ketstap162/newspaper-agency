@@ -32,8 +32,8 @@
 
       {% for topic in topic_list %}
         <tr>
-          <td>
-            <a href="{% url 'newspaper:topic-detail' pk=topic.id %}" class="btn btn-dark btn-sml">
+          <td class="col-sm-1">
+            <a href="{% url 'newspaper:topic-detail' pk=topic.id %}" class="btn btn-dark btn-sm">
               {{ topic.id }}
             </a>
           </td>

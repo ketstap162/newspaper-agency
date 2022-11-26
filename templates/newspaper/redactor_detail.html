@@ -39,8 +39,8 @@
 
         {% for newspaper in redactor.newspapers.all %}
           <tr>
-            <td>
-              <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}" class="btn btn-dark btn-sml">
+            <td class="col-sm-1">
+              <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}" class="btn btn-dark btn-sm">
                 {{ newspaper.id }}
               </a>
             </td>

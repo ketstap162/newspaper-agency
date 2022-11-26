@@ -33,8 +33,8 @@
 
         {% for redactor in newspaper.publishers.all %}
           <tr>
-            <td>
-              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
+            <td class="col-sm-1">
+              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sm">
                 {{ redactor.id }}
               </a>
             </td>
