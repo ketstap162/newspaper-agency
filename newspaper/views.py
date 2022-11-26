@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -44,9 +44,9 @@ class TopicListView(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context["search_form"] = SearchForm(initial={
-            "search_by": self.request.GET.get("search_by", "")
-        })
+        context["search_form"] = SearchForm(
+            initial={"search_by": self.request.GET.get("search_by", "")}
+        )
         return context
 
     def get_queryset(self):
@@ -62,6 +62,7 @@ class TopicListView(generic.ListView):
 
 class TopicDetailView(generic.DetailView):
     model = Topic
+    queryset = Topic.objects.prefetch_related("newspapers")
 
 
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
@@ -83,14 +84,14 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class NewspaperListView(generic.ListView):
     model = Newspaper
-    queryset = Newspaper.objects.all().select_related("topic")
+    queryset = Newspaper.objects.select_related("topic")
     paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context["search_form"] = SearchForm(initial={
-            "search_by": self.request.GET.get("search_by", "")
-        })
+        context["search_form"] = SearchForm(
+            initial={"search_by": self.request.GET.get("search_by", "")}
+        )
         return context
 
     def get_queryset(self):
@@ -106,7 +107,9 @@ class NewspaperListView(generic.ListView):
 
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper
-    queryset = Newspaper.objects.prefetch_related("publishers")
+    queryset = Newspaper.objects.prefetch_related("publishers").select_related(
+        "topic"
+    )
 
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
@@ -133,9 +136,9 @@ class RedactorListView(generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context["search_form"] = SearchForm(initial={
-            "search_by": self.request.GET.get("search_by", "")
-        })
+        context["search_form"] = SearchForm(
+            initial={"search_by": self.request.GET.get("search_by", "")}
+        )
         return context
 
     def get_queryset(self):
@@ -151,7 +154,7 @@ class RedactorListView(generic.ListView):
 
 class RedactorDetailView(generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.all().prefetch_related("newspapers__topic")
+    queryset = Redactor.objects.prefetch_related("newspapers__topic")
 
 
 class RedactorCreateView(generic.CreateView):

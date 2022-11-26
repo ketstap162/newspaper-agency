@@ -12,7 +12,12 @@
   </h1>
   <hr>
 
-  <p><strong>Topic: </strong>{{ newspaper.topic.name }}</p>
+  <p>
+    <strong>Topic: </strong>
+    <a href="{% url 'newspaper:topic-detail' pk=newspaper.topic.id %}" style="color: black">
+      {{ newspaper.topic.name }}
+    </a>
+  </p>
 
   <div class="container-fluid newspaper-content">
     <h4 style="text-align: center">{{ newspaper.title }}</h4>
@@ -33,8 +38,8 @@
 
         {% for redactor in newspaper.publishers.all %}
           <tr>
-            <td>
-              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sml">
+            <td class="col-sm-1">
+              <a href="{% url 'newspaper:redactor-detail' pk=redactor.id %}" class="btn btn-dark btn-sm">
                 {{ redactor.id }}
               </a>
             </td>
