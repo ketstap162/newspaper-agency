@@ -37,4 +37,4 @@ What's all the bells and whistles this project can perform?
 * Powerful admin panel for advanced managing.
 
 ## Demo
-![demo](https://i.ibb.co/3Nh2fmK/demo-home-page.png)
+![image](https://user-images.githubusercontent.com/72568844/204335794-56fe003a-7d42-48de-86f7-bfba940b84ec.png)
