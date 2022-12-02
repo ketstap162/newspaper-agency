@@ -3,6 +3,11 @@
 {% block content %}
   <h1>
     User: {{ redactor.username }}
+
+    {% if not redactor.is_staff %}
+      <span style="color: gray">(not confirmed)</span>
+    {% endif %}
+
     {% if user.is_superuser %}
       <div class="float-right d-flex align-items-center">
         <a href="{% url 'newspaper:redactor-full-update' pk=redactor.id %}" class="btn btn-dark">Update</a>
