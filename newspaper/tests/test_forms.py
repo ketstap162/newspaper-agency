@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from newspaper.forms import RedactorCreationForm, RedactorYearsUpdateForm
+from newspaper.forms import RedactorCreationForm
 
 
 class FormTests(TestCase):
