@@ -48,7 +48,6 @@ class TopicViewTests(TestCase):
         }
 
         response = self.client.get(TOPICS_URL, params=payload)
-        response = self.client.get(TOPICS_URL + f"?search_by={search_word}")
 
         for name in [
             word for word in topics_names
