@@ -24,6 +24,8 @@ cd newspaper-agency
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver
 ```
 
@@ -35,6 +37,17 @@ What's all the bells and whistles this project can perform?
 * Authentication functionality for Redactor/User.
 * Managing books, redactors & topics directly from website interface.
 * Powerful admin panel for advanced managing.
+
+## Group of users:
+* `superuser`: This is the `admin` (Chief Redactor). 
+All actions on the site are available to him, and he also 
+has access to the `admin page`.
+* `staff`: This is an agency employee who has access 
+to editing newspapers, topics, as well as user experience.
+* `user`: This is a registered user who must receive 
+confirmation from the administrator in order to become a `staff`.
+* `anon`: This is an unauthorized user 
+who has access only to view the site.
 
 ## Demo
 ![image](https://user-images.githubusercontent.com/72568844/204335794-56fe003a-7d42-48de-86f7-bfba940b84ec.png)

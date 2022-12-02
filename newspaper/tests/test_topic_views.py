@@ -11,7 +11,8 @@ class TopicViewTests(TestCase):
     def setUp(self) -> None:
         self.redactor = get_user_model().objects.create_user(
             username="testuser",
-            password="test123user"
+            password="test123user",
+            is_staff=True,
         )
         self.client.force_login(self.redactor)
 
@@ -33,3 +34,44 @@ class TopicViewTests(TestCase):
             list(topics)
         )
         self.assertTemplateUsed(response, "newspaper/topic_list.html")
+
+    def test_search_topics_by_name(self):
+        search_word = "C"
+        topics_names = ["Crime", "Cultural", "Military", "Music"]
+
+        for name in topics_names:
+            Topic.objects.create(
+                name=name,
+            )
+
+        payload = {
+            "search_by": search_word
+        }
+
+        response = self.client.get(TOPICS_URL, data=payload)
+
+        for name in [
+            word for word in topics_names
+            if search_word.lower() in word.lower()
+        ]:
+            self.assertContains(response, name)
+
+        for name in [
+            word for word in topics_names
+            if search_word.lower() not in word.lower()
+        ]:
+            self.assertNotContains(response, name)
+
+    def test_topic_update(self):
+        topic = Topic.objects.create(
+            name="FirstTestTopicName"
+        )
+
+        self.client.post(
+            reverse("newspaper:topic-update", args=[topic.id]),
+            data={"name": "SecondTestTopicName"}
+        )
+
+        topic.refresh_from_db()
+
+        self.assertEqual(topic.name, "SecondTestTopicName")
