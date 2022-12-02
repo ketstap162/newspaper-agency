@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -13,6 +12,7 @@ from newspaper.forms import (
     SearchForm,
 )
 from newspaper.models import Redactor, Newspaper, Topic
+from newspaper.permission_classes import StaffRequiredMixin
 
 
 def index(request):
@@ -65,19 +65,19 @@ class TopicDetailView(generic.DetailView):
     queryset = Topic.objects.prefetch_related("newspapers")
 
 
-class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+class TopicCreateView(StaffRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper:topic-list")
 
 
-class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+class TopicUpdateView(StaffRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("newspaper:topic-list")
 
 
-class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
+class TopicDeleteView(StaffRequiredMixin, generic.DeleteView):
     model = Topic
     success_url = reverse_lazy("newspaper:topic-list")
 
@@ -112,19 +112,19 @@ class NewspaperDetailView(generic.DetailView):
     )
 
 
-class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+class NewspaperCreateView(StaffRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+class NewspaperUpdateView(StaffRequiredMixin, generic.UpdateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+class NewspaperDeleteView(StaffRequiredMixin, generic.DeleteView):
     model = Newspaper
     success_url = reverse_lazy("newspaper:newspaper-list")
 
@@ -163,7 +163,7 @@ class RedactorCreateView(generic.CreateView):
     success_url = reverse_lazy("newspaper:redactor-list")
 
 
-class RedactorYearsUpdateView(LoginRequiredMixin, generic.UpdateView):
+class RedactorYearsUpdateView(StaffRequiredMixin, generic.UpdateView):
     model = Redactor
     form_class = RedactorYearsUpdateForm
     template_name = "newspaper/redactor_form.html"
